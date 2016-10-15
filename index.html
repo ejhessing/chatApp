@@ -3,12 +3,14 @@
 <head>
    <meta charset="UTF-8">
    <title>Chat App</title>
-   <link rel="stylesheet" href="localhost:3000/style.css" >
+   <link rel="stylesheet" href="style.css" >
 </head>
 <body>
    <div id="container">
-      <div id="namesWrapper">
-         <h2>Chat APP</h2>
+      <h1>Simple Chat Application</h1>
+      <h4>Socket.io</h4>
+      
+      <div id="userContainer">
          <p>Create Username:</p>
          <form id="usernameForm">
             <input type="text" size="35" id="username">
@@ -16,8 +18,7 @@
          </form>
       </div>
 
-      <div id="mainWrapper">
-         <h2>Chat APP </h2>
+      <div id="mainContainer">
          <div id="chatWrapper">
             <div id="chatWindow"></div>
             <form id="messageForm">
@@ -30,6 +31,7 @@
             <div id="users"></div>
          </div>
       </div>
+      
    </div>
 </body>
 </html>
