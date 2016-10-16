@@ -9,5 +9,13 @@ app.get('/', (req, res) => {
    res.sendFile(__dirname + '/index.html');
 });
 
+io.sockets.on('connection', (socket) => {
+    console.log('Socket Connected!');
+
+    socket.on('send message', (data) => {
+        io.sockets.emit('new message', { msg: data});
+    });
+});
+
 
 server.listen(PORT);
