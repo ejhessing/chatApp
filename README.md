@@ -1,10 +1,11 @@
-# chatApp
-Chat App using socket.io
+<h1>Simple Chat App using Socket.io</h1>
 
-Uploaded to https://stormy-inlet-42487.herokuapp.com
+Live Version at https://stormy-inlet-42487.herokuapp.com
 
-To Do :
-Seperate CSS and socket.io functionality to their own files
-Create a gap between chat messages
-make the site mobile friendly 
-
+<h2>How to use</h2>
+```
+  $ git clone https://github.com/ejhessing/chatApp.git
+  $ npm install
+  $ npm start
+```
+Go to http://localhost:3000.  Open another browser to see how socket.io works in real time, or ideally, see it in action at https://stormy-inlet-42487.herokuapp.com
