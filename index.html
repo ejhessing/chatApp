@@ -34,17 +34,18 @@
    }
 
    #userContainer {
-     display:none;
+
      margin: 50px 15px;
      padding: 15px;
      border: 3px solid #E80C9D;
      background: #B253E8;
      text-align: center;
-
    }
 
-
-
+   #error {
+     margin: 10px;
+     font-weight: bold;
+   }
 
    #userContainer p {
      font-size: 18px;
@@ -58,6 +59,7 @@
 
 
    #mainContainer {
+     display: none;
      margin: 50px 0;
      padding: 15px;
      border: 3px solid #E80C9D;
@@ -110,6 +112,7 @@
 
       <div id="userContainer">
          <p>Create Username:</p>
+         <div id="error"></div>
          <form id="usernameForm">
             <input type="text" size="35" id="username">
             <input type="submit" value="Submit">
@@ -143,6 +146,30 @@
 		var $messageForm = $('#messageForm');
 		var $message = $('#message');
 		var $chat = $('#chatWindow');
+    var $usernameForm = $('#usernameForm');
+    var $users = $('#users');
+    var $username = $('#username');
+    var $error = $('#error');
+
+    $usernameForm.submit(function(e){
+      e.preventDefault();
+			socket.emit('new user', $username.val(), (data) => {
+        if(data) {
+          $('#userContainer').hide();
+          $('#mainContainer').show();
+        } else {
+          $error.html('Username is taken, try something else ')
+        }
+      });
+    });
+
+    socket.on('usernames', (data) => {
+      var html = '';
+      for(var i = 0; i < data.length; i++) {
+        html += data[i] + '<br>';
+        $users.html(html);
+      }
+    });
 
 		$messageForm.submit(function(e){
 			e.preventDefault();
@@ -150,8 +177,10 @@
 			$message.val('');
 		});
 
+
+
 		socket.on('new message', function(data){
-			$chat.append(data.msg + '<br>');
+			$chat.append(data.user + " : " + data.msg + '<br>');
 		});
 
 	});
